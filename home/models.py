@@ -20,7 +20,8 @@ class transaction(models.Model):
     transaction_id = models.AutoField(primary_key=True)
     transaction_name = models.CharField(max_length=1000)
     transaction_type = models.CharField(max_length=10, choices=action_type)
-    transaction_amaount = models.FloatField()
+    transaction_amount = models.FloatField()
+    transaction_time = models.DateField(default=datetime.now)
     credential = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

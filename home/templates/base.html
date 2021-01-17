@@ -47,15 +47,15 @@
                     </li>
                 </ul>
                 {% if user.is_authenticated %}
-                <div class="btn-group dropstart">
+                <div class="btn-group dropdown">
                     <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-user-circle h3"></i>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li> Welcome {{request.user.first_name}}</li><hr>
+                        <li><a class="dropdown-item" href="/account">Account</a></li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
                     </ul>
                 </div>
                 {% else %}

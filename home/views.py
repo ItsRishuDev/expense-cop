@@ -5,8 +5,11 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 
 # Create your views here.
+@login_required(login_url='/login')
 def index(request):
-    return render(request, 'index.html')
+    detail = userDetail.objects.filter(credential=request.user)
+    param = {'detail':detail}
+    return render(request, 'index.html', param)
 
 def login(request):
     if request.user.is_anonymous:
@@ -54,3 +57,39 @@ def register(request):
 
     else:
         return render(request, 'signup.html')    
+
+def logout(request):
+    auth.logout(request)
+    messages.info(request, 'Thank You, Come Again')
+    return redirect('/login')
+
+def addTransactions(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        amount = request.POST['amount']
+        transtype = request.POST['type']
+        user = userDetail.objects.filter(credential=request.user)
+        trans = transaction(transaction_name=name, transaction_amount=amount, transaction_type=transtype, credential=request.user)
+        if int(transtype) == 0:
+            user_balance = user[0].current_balance
+            updated_balance = user_balance + int(amount)
+            user.update(current_balance=updated_balance)
+        elif int(transtype) == 1:
+            user_balance = user[0].current_balance
+            updated_balance = user_balance - int(amount)
+            user.update(current_balance=updated_balance)
+        trans.save()                
+        messages.info(request, 'Transaction Added')
+        return redirect('/')
+
+@login_required(login_url='/login')
+def showTransaction(request):
+    transactionData = transaction.objects.filter(credential=request.user)
+    print(transactionData)
+    userData = userDetail.objects.filter(credential=request.user)
+
+    param = {'transactions':transactionData, 'user':userData}
+    return render(request, 'transaction.html', param)
+
+def about(request):
+    return render(request, 'about.html')

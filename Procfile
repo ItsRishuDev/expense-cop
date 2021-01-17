@@ -1,0 +1,1 @@
+web: gunicorn expensecop.wsgi --log-file -

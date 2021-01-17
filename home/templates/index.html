@@ -3,5 +3,59 @@
 Home
 {% endblock title %}
 {% block body %}
-
+<div class="container">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin my-5 shadow mb-5 bg-white rounded">
+                    <div class="card text-center">
+                        <div class="card-header bg-info text-white">
+                            Expense Cop
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                {% for data in detail %}
+                                <div class="col-lg-6 border-end">
+                                    <h6 class="text-success">Current Income <br> &#8377; {{data.income}}</h6>
+                                </div>
+                                <div class="col-lg-6 border-start">
+                                    <h6 class="text-info">Current Balance <br> &#8377; {{data.current_balance}}</h6>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <br>
+                            <h5 class="card-title text-primary">New Transaction</h5><hr>
+                            <form method="POST" action="/addtransaction">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="inputText" class="form-label">Transaction For</label>
+                                    <input type="text" name="name" class="form-control" id="inputText" placeholder="Transaction Text" required>
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="inputAmount" class="form-label">Amount</label>
+                                    <input type="number" name="amount" class="form-control" id="inputAmount" placeholder="Transaction Amount" required>
+                                  </div>
+                                  <div>
+                                    <label for="inputType" class="form-label">Transaction Type</label>
+                                    <select id="inputType" name="type" class="form-select" required>
+                                      <option selected disabled>Choose...</option>
+                                      <option value="0">Deposite (Money added)</option>
+                                      <option value="1">Withdrawal (Money Removed)</option>
+                                    </select>
+                                  </div>
+                                  <br>
+                                  <div>
+                                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                                  </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-muted">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock body %}
