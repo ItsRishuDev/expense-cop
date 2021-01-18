@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'expensecop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd22pf4a2r4ikij',
+        'USER': 'tuofxyrdyyrrnk',
+        'PASSWORD': '3fdc409fb80e67a1bd162b3454fdf973d9db4ff4016e43595c3fd30befc21fee',
+        'HOST': 'ec2-23-23-88-216.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
