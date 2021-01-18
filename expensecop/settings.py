@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '=!ew2-jc8@tp938c_r9%70bam#o=h!ipcl-l1gdrtbejuu(b(r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['expensecop.herokuapp.com/', '127.0.0.1']
 
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'expensecop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd22pf4a2r4ikij',
-        'USER': 'tuofxyrdyyrrnk',
-        'PASSWORD': '3fdc409fb80e67a1bd162b3454fdf973d9db4ff4016e43595c3fd30befc21fee',
-        'HOST': 'ec2-23-23-88-216.compute-1.amazonaws.com',
+        'NAME': 'd5d7omvlgvi8vj',
+        'USER': 'dmeegiuzoeivkn',
+        'PASSWORD': '2c0470f6adeb980f9217fc460be09fdce990d32f007a6309546d511ac87d5f24',
+        'HOST': 'ec2-54-205-187-125.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
