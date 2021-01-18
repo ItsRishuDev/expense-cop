@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
 About
 {% endblock title %}
 {% block body %}
-
+<div class="container">
+    <div class="mt-5">
+        <img src="{% static 'img/logo.png' %}" class="card-img-top" alt="Expense Cop">
+        <div class="card-body">
+          <h5 class="card-title">About Expense Cop</h5>
+          <p class="card-text">Expense Cop help you to monitor your expense by just simple clicks. You can add new transactions and can view your old transaction</p>
+          <a class="card-text btn btn-info text-white" href="/signup">Join Now</a>
+        </div>
+      </div>
+</div>
 {% endblock body %}

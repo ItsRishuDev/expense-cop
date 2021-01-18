@@ -85,11 +85,30 @@ def addTransactions(request):
 @login_required(login_url='/login')
 def showTransaction(request):
     transactionData = transaction.objects.filter(credential=request.user)
-    print(transactionData)
+    print(transactionData[0].transaction_type)
     userData = userDetail.objects.filter(credential=request.user)
 
     param = {'transactions':transactionData, 'user':userData}
     return render(request, 'transaction.html', param)
 
+@login_required(login_url='/login')
+def account(request):
+    detail = userDetail.objects.filter(credential=request.user)
+    param = {'detail':detail}
+    return render(request, 'account.html', param)
+
+def updateAccount(request):
+    if request.method == 'POST':
+        income = request.POST['income']        
+        balance = request.POST['balance']
+        user = userDetail.objects.filter(credential=request.user)
+        user.update(income=income, current_balance=balance)
+
+        messages.success(request, 'Account Updated Successfully')
+        return redirect('/account')
+
+    else:
+        return redirect('/')
+
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html')        

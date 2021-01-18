@@ -21,7 +21,7 @@ class transaction(models.Model):
     transaction_name = models.CharField(max_length=1000)
     transaction_type = models.CharField(max_length=10, choices=action_type)
     transaction_amount = models.FloatField()
-    transaction_time = models.DateField(default=datetime.now)
+    transaction_time = models.DateTimeField(auto_now_add=True)
     credential = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

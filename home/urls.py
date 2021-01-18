@@ -24,5 +24,7 @@ urlpatterns = [
     path('logout', views.logout, name = 'logout'),
     path('transaction', views.showTransaction, name = 'transaction'),
     path('addtransaction', views.addTransactions, name = 'addTrans'),
-    path('about', views.about, name='about'),
+    path('account', views.account, name='account'),
+    path('updateaccount', views.updateAccount, name = 'update'),
+    path('about', views.about, name = 'about'),
 ]

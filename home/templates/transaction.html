@@ -17,12 +17,16 @@ Transactions
           </tr>
         </thead>
         <tbody>
-          {% for transaction in transactions %} 
+          {% for transaction in transactions reversed%} 
           <tr>
             <th>{{transaction.transaction_name}}</th>
             <td>{{transaction.transaction_time}}</td>
             <td>{{transaction.transaction_amount}}</td>
-            <td>{{transaction.transaction_type}}</td>
+            {% if transaction.transaction_type == '0' %}
+            <td class = "text-success">Deposite</td>
+            {% else %}
+            <td class = "text-danger">Withdrawal</td>            
+            {% endif %}
           </tr>
           {% endfor %} 
         </tbody>
