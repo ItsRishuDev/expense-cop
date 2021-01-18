@@ -84,12 +84,16 @@ def addTransactions(request):
 
 @login_required(login_url='/login')
 def showTransaction(request):
-    transactionData = transaction.objects.filter(credential=request.user)
-    print(transactionData[0].transaction_type)
-    userData = userDetail.objects.filter(credential=request.user)
+    try:
+        transactionData = transaction.objects.filter(credential=request.user)
+        print(transactionData[0].transaction_type)
+        userData = userDetail.objects.filter(credential=request.user)
 
-    param = {'transactions':transactionData, 'user':userData}
-    return render(request, 'transaction.html', param)
+        param = {'transactions':transactionData, 'user':userData}
+        return render(request, 'transaction.html', param)
+    except:
+        messages.info(request, 'No Transaction Detected')
+        return render('/')
 
 @login_required(login_url='/login')
 def account(request):
